@@ -9,7 +9,7 @@
   
 - Crea un entorno virtualenv y actívalo.  
 - Clona el repositorio con:   
-  - `git clone https://gitlab.com/hartas17/django-rest-boilerplate.git`  
+  - `git clone https://github.com/hartas17/antares.git`  
 - Instala los requerimientos con:   
   - `pip install -r requirements/local.txt`
 - Ejecutar migraciones:
@@ -19,7 +19,7 @@
   
 ## Como ejecutar
  
-    python manage.py runserver --settings nombre_proyecto.settings.local  
+    python manage.py runserver --settings amtares.settings.local  
 
  
 ## Baterías incluidas  
@@ -71,7 +71,7 @@ Para activar y desactivar las variables de entorno de forma automática, es nece
  
 
     Set: 
-    $env:DJANGO_SETTINGS_MODULE = 'boilerplate.settings.local'     
+    $env:DJANGO_SETTINGS_MODULE = 'antares.settings.local'     
     
     Delete: 
     Remove-Item env:DJANGO_SETTINGS_MODULE 
