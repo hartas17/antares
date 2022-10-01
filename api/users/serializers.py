@@ -3,7 +3,6 @@ from rest_framework.exceptions import ValidationError
 from django.contrib.auth import authenticate
 from django.utils.translation import gettext_lazy as _
 from rest_framework import serializers
-from rest_framework_jwt.serializers import JSONWebTokenSerializer, jwt_payload_handler, jwt_encode_handler
 
 from .models import User
 
@@ -80,46 +79,3 @@ class UserChangePasswordSerializer(serializers.Serializer):
         if not user.check_password(value):
             raise serializers.ValidationError(_('Old password not match.'))
 
-
-class CustomJWTSerializer(JSONWebTokenSerializer):
-    username_field = 'email'
-
-    def validate(self, attrs):
-        password = attrs.get("password")
-        user_obj = User.objects.filter(
-            email=attrs.get("email")).first() or User.objects.filter(username=attrs.get("email")).first()
-        if user_obj is not None:
-            credentials = {
-                'username': user_obj.username,
-                'password': password
-            }
-            if all(credentials.values()):
-                user = authenticate(**credentials)
-                if user:
-                    if not user.is_active:
-                        msg = _('User account is disabled.')
-                        raise serializers.ValidationError(msg)
-
-                    payload = jwt_payload_handler(user)
-
-                    return {
-                        'token': jwt_encode_handler(payload),
-                        'user': user
-                    }
-                else:
-                    msg = _('Unable to log in with provided credentials.')
-                    raise serializers.ValidationError(msg)
-
-            else:
-                msg = _(f'Must include username and password.')
-                raise serializers.ValidationError(msg)
-
-        else:
-            msg = _('Account with this email/username does not exists')
-            raise serializers.ValidationError(msg)
-
-    def update(self, instance, validated_data):
-        pass
-
-    def create(self, validated_data):
-        pass

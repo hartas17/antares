@@ -11,10 +11,9 @@ from rest_framework import status
 from rest_framework.generics import get_object_or_404
 from rest_framework.response import Response
 from rest_framework.views import APIView
-from rest_framework_jwt.views import ObtainJSONWebToken
 
 from .models import User
-from .serializers import CustomJWTSerializer, UserSerializer, UserCreateSerializer, UserChangePasswordSerializer
+from .serializers import UserSerializer, UserCreateSerializer, UserChangePasswordSerializer
 from .forms import ResetPasswordForm
 
 
@@ -153,6 +152,3 @@ def reset_password(request, user_id, token):
         form = ResetPasswordForm(initial={'token': token})
 
     return render(request, 'registration/reset_password.html', {'form': form})
-
-
-obtain_jwt_token = ObtainJSONWebToken.as_view(serializer_class=CustomJWTSerializer)

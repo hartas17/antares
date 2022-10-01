@@ -1,4 +1,4 @@
-"""boilerplate URL Configuration
+"""antares URL Configuration
 
 The `urlpatterns` list routes URLs to views. For more information please see:
     https://docs.djangoproject.com/en/2.1/topics/http/urls/
@@ -27,6 +27,8 @@ urlpatterns = [
     path(f'{api_url}', include('api.users.urls')),
     path('activate/<uuid:activation_token>/', activation),
     path('reset-password/<int:user_id>/<str:token>/', reset_password),
+    path('login/', include('dj_rest_auth.urls')),
+    path('users/registration/', include('dj_rest_auth.registration.urls'))
 ]
 
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

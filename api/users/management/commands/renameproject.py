@@ -13,19 +13,19 @@ class Command(BaseCommand):
         new_project_name = kwargs['new_project_name']
 
         # Logica para renombrar los archivos
-        files_to_rename = ['boilerplate/settings/base.py', 'boilerplate/wsgi.py', 'manage.py']
-        folder_to_rename = 'boilerplate'
+        files_to_rename = ['antares/settings/base.py', 'antares/wsgi.py', 'manage.py']
+        folder_to_rename = 'antares'
 
         for f in files_to_rename:
             with open(f, 'r') as file:
                 filedata = file.read()
 
                 # Cada que se renombra un proyecto se genera una nueva secret key
-                if file.name == 'boilerplate/settings/base.py':
+                if file.name == 'antares/settings/base.py':
                     new_key = get_random_secret_key()
                     filedata = filedata.replace('q#4ot4302m^yx2$v$dhant-bjo7nl#b)jhhppe2hb#m@77x6g$', new_key)
 
-            filedata = filedata.replace('boilerplate', new_project_name)
+            filedata = filedata.replace('antares', new_project_name)
 
             with open(f, 'w') as file:
                 file.write(filedata)
