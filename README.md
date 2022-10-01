@@ -1,4 +1,4 @@
-# Django REST boilerplate  
+# Antares project
   
 ## Requisitos  
 - Python 3.6 o superiror  
