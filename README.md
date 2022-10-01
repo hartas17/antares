@@ -11,9 +11,7 @@
 - Clona el repositorio con:   
   - `git clone https://gitlab.com/hartas17/django-rest-boilerplate.git`  
 - Instala los requerimientos con:   
-  - `pip install -r requirements/local.txt`  
-- Para renombrar el proyecto utilizamos el comando personalizado:   
-  - `python manage.py renameproject nombreproyecto`  
+  - `pip install -r requirements/local.txt`
 - Ejecutar migraciones:
 	- `python manage.py migrate`
 - Crear super usuario para el admin (opcional):
