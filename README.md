@@ -19,7 +19,7 @@
   
 ## Como ejecutar
  
-    python manage.py runserver --settings amtares.settings.local  
+    python manage.py runserver --settings antares.settings.local  
 
  
 ## Baterías incluidas  
